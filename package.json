@@ -25,6 +25,7 @@
     "url": "https://github.com/olalonde/expressionist/issues"
   },
   "devDependencies": {
-    "should": "~1.2.2"
+    "should": "~1.2.2",
+    "mocha": "~1.11.0"
   }
 }
