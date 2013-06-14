@@ -1,0 +1,30 @@
+{
+  "name": "expressionist",
+  "version": "0.0.1",
+  "description": "Programmatically generate expression trees in Node.js or plain browser Javascript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/olalonde/expressionist.git"
+  },
+  "keywords": [
+    "expression",
+    "parser",
+    "generator",
+    "boolean",
+    "tree",
+    "expression",
+    "tree"
+  ],
+  "author": "Olivier Lalonde <olalonde@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olalonde/expressionist/issues"
+  },
+  "devDependencies": {
+    "should": "~1.2.2"
+  }
+}
