@@ -4,9 +4,8 @@
 
 Generate your own DSLs using native Javascript syntax. It lets you do
 cool stuff like delay the execution of a bunch of methods until the
-methods have been define. This makes it easy to pass the expression tree
-to third party modules which can then decide how they want to execute
-it.
+methods have been defined. This makes it easy to pass expressions around
+and let various adapters decide how they want to execute the expression.
 
 Expressionist lets you programmatically generate expression trees in
 Node.js and then evaluate it after you have defined operation mapppings. 
