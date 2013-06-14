@@ -1,6 +1,6 @@
 {
   "name": "expressionist",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "description": "Programmatically generate expression trees in Node.js or plain browser Javascript.",
   "main": "index.js",
   "scripts": {
