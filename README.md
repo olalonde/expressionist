@@ -2,9 +2,10 @@
 
 [![Build Status](https://travis-ci.org/olalonde/expressionist.png)](https://travis-ci.org/olalonde/expressionist) [![NPM version](https://badge.fury.io/js/expressionist.png)](http://badge.fury.io/js/expressionist)
 
-Programmatically generate expression trees in Node.js or plain browser Javascript.
+Generate your own DSLs using native Javascript syntax. Work in progress.
 
-Ultimate goal: generate your own DSLs using native Javascript syntax.
+Expressionist lets you programmatically generate expression trees in
+Node.js and then evaluate it after you have defined operation mapppings. 
 
 ## Install
 
@@ -33,7 +34,6 @@ var pretty = res.pretty();
 console.log(util.inspect(pretty, null, 10));
 
 /* 
-
 Outputs:
 
   { or:
@@ -43,6 +43,32 @@ Outputs:
           { notEql: [ 'job', 'spy' ] },
           { notEql: [ 'company', 'nsa' ] } ] } ] }
 
+*/
+
+
+var map = {
+  or: function (operands) {
+    return ' (' + operands.join(' OR ') + ') ';
+  },
+  and: function (operands) {
+    return ' (' + operands.join(' AND ') + ') ';
+  },
+  eql: function (operands) {
+    return operands[0] + ' = "' + operands[1] + '"';
+  },
+  notEql: function (operands) {
+    return operands[0] + ' != "' + operands[1] + '"';
+  }
+};
+
+var res = expr.evaluate(map);
+
+console.log(res);
+
+/*
+Outpus:
+
+ (country = "Canada" OR  (country = "USA" AND job != "spy" AND company != "nsa") )
 */
 ```
 

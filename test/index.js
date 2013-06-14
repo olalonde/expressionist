@@ -48,17 +48,17 @@ describe('evaluating tree against map', function () {
         return ' (' + operands.join(' AND ') + ') ';
       },
       eql: function (operands) {
-        return 'table.' + operands[0] + ' = "' + operands[1] + '"';
+        return operands[0] + ' = "' + operands[1] + '"';
       },
       notEql: function (operands) {
-        return 'table.' + operands[0] + ' != "' + operands[1] + '"';
+        return operands[0] + ' != "' + operands[1] + '"';
       }
     };
     res = expr.evaluate(map);
   });
 
   it('should return the right value', function () {
-    res.should.equal(' (table.country = "Canada" OR  (table.country = "USA" AND table.job != "spy" AND table.company != "nsa") ) ');
+    res.should.equal(' (country = "Canada" OR  (country = "USA" AND job != "spy" AND company != "nsa") ) ');
     console.log(res);
   });
 });
