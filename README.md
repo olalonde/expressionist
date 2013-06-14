@@ -11,7 +11,7 @@ Programmatically generate expression trees in Node.js or plain browser Javascrip
 ## Usage
 
 ```javascript
-WhereExpression = require('expressionist')([
+var WhereExpression = require('expressionist')([
   'or', 'and', 'eql', 'notEql', 'in'
 ]);
 
