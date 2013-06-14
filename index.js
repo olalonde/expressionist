@@ -4,6 +4,21 @@ var Expression = function (operators) {
   this.operands = [];
 };
 
+Expression.prototype.evaluate = function (map) {
+  var _this = this;
+  // evaluate subexpressions first
+  this.operands.forEach(function (operand, index) {
+    if (operand.evaluate) {
+      _this.operands[index] = operand.evaluate(map);
+    }
+  });
+
+  if (!map[this.operator]) 
+    throw new Error(this.operator + ' is not present in map');
+
+  return map[this.operator](this.operands);
+};
+
 // nice visual representation
 Expression.prototype.pretty = function () {
   var obj = {};
@@ -32,6 +47,7 @@ module.exports = function (operators) {
   inherits(CustomExpression, Expression);
 
   operators.forEach(function (operator) {
+    // todo: support something is array, list of argument, etc.
     CustomExpression.prototype[operator] = function (something) {
       if (!this.operator || this.operator === operator) {
         this.operator = operator;

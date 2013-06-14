@@ -4,6 +4,8 @@
 
 Programmatically generate expression trees in Node.js or plain browser Javascript.
 
+Ultimate goal: generate your own DSLs using native Javascript syntax.
+
 ## Install
 
     npm install expressionist

@@ -4,13 +4,14 @@ var util = require('util'),
     'or', 'and', 'eql', 'notEql', 'in'
   ]);
 
-describe('simple expression', function () {
-  var expr, res, pretty;
+var expr, pretty;
+
+describe('generate expression tree', function () {
   before(function () {
 
     _ = WhereExpression.start;
 
-    res = 
+    expr = 
       _('country')
       .eql('Canada')
       .or(
@@ -19,7 +20,7 @@ describe('simple expression', function () {
         .and(_('company').notEql('nsa'))
       );
 
-      pretty = res.pretty();
+      pretty = expr.pretty();
 
       console.log(util.inspect(pretty, null, 10));
 
@@ -32,5 +33,32 @@ describe('simple expression', function () {
     should.exist(pretty.or[1].and[0].eql);
     should.exist(pretty.or[1].and[1].notEql);
     should.exist(pretty.or[1].and[2].notEql);
+  });
+});
+
+describe('evaluating tree against map', function () {
+  var res, map;
+
+  before(function () {
+    map = {
+      or: function (operands) {
+        return ' (' + operands.join(' OR ') + ') ';
+      },
+      and: function (operands) {
+        return ' (' + operands.join(' AND ') + ') ';
+      },
+      eql: function (operands) {
+        return 'table.' + operands[0] + ' = "' + operands[1] + '"';
+      },
+      notEql: function (operands) {
+        return 'table.' + operands[0] + ' != "' + operands[1] + '"';
+      }
+    };
+    res = expr.evaluate(map);
+  });
+
+  it('should return the right value', function () {
+    res.should.equal(' (table.country = "Canada" OR  (table.country = "USA" AND table.job != "spy" AND table.company != "nsa") ) ');
+    console.log(res);
   });
 });
