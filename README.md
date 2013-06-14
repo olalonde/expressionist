@@ -26,9 +26,9 @@ var res =
     .and(_('company').notEql('nsa'))
   );
 
-  var pretty = res.pretty();
+var pretty = res.pretty();
 
-  console.log(util.inspect(pretty, null, 10));
+console.log(util.inspect(pretty, null, 10));
 
 /* 
 
